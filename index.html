@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treino Facil</title>
+    
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-dumbbell me-2"></i>
+                MeuTreino
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Meus Treinos</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="listaTreinos" class="list-group mb-3">
+                        </div>
+                        <button id="btnNovoTreino" class="btn btn-success w-100">
+                            <i class="fas fa-plus me-2"></i>Novo Treino
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-8">
+                <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0" id="treinoAtualTitulo">Criar Novo Treino</h5>
+                        <div>
+                            <button id="btnSalvarTreino" class="btn btn-primary">
+                                <i class="fas fa-save me-2"></i>Salvar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form id="formTreino">
+                            <div class="mb-3">
+                                <label for="nomeTreino" class="form-label">Nome do Treino</label>
+                                <input type="text" class="form-control" id="nomeTreino" placeholder="Ex: Treino A - Peito/Tríceps">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="descricaoTreino" class="form-label">Descrição (opcional)</label>
+                                <textarea class="form-control" id="descricaoTreino" rows="2" placeholder="Breve descrição do treino"></textarea>
+                            </div>
+                            
+                            <h6 class="mb-3 border-bottom pb-2">Exercícios</h6>
+                            
+                            <div id="listaExercicios">
+                            </div>
+                            
+                            <button type="button" id="btnAdicionarExercicio" class="btn btn-info w-100 mt-3">
+                                <i class="fas fa-plus me-2"></i>Adicionar Exercício
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalExercicio" tabindex="-1" aria-labelledby="modalExercicioLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalExercicioLabel">Adicionar Exercício</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formExercicio">
+                        <input type="hidden" id="exercicioIndex">
+                        
+                        <div class="mb-3">
+                            <label for="nomeExercicio" class="form-label">Nome do Exercício</label>
+                            <input type="text" class="form-control" id="nomeExercicio" placeholder="Ex: Supino Reto" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="maquinaExercicio" class="form-label">Máquina/Equipamento</label>
+                            <select class="form-select" id="maquinaExercicio">
+                                <option value="">Selecione...</option>
+                                <option value="Esteira">Esteira</option>
+                                <option value="Bicicleta Ergométrica">Bicicleta Ergométrica</option>
+                                <option value="Supino Reto">Supino Reto</option>
+                                <option value="Supino Inclinado">Supino Inclinado</option>
+                                <option value="Leg Press">Leg Press</option>
+                                <option value="Cadeira Extensora">Cadeira Extensora</option>
+                                <option value="Cadeira Flexora">Cadeira Flexora</option>
+                                <option value="Puxador Costas">Puxador Costas</option>
+                                <option value="Crossover">Crossover</option>
+                                <option value="Banco Scott">Banco Scott</option>
+                                <option value="Rosca Direta">Rosca Direta</option>
+                                <option value="Tríceps Corda">Tríceps Corda</option>
+                                <option value="Hack Squat">Hack Squat</option>
+                                <option value="Smith">Smith</option>
+                                <option value="Agachamento Livre">Agachamento Livre</option>
+                                <option value="Peck Deck">Peck Deck</option>
+                                <option value="Desenvolvimento">Desenvolvimento</option>
+                                <option value="Elevação Lateral">Elevação Lateral</option>
+                                <option value="Remada Baixa">Remada Baixa</option>
+                                <option value="Panturrilha">Panturrilha</option>
+                                <option value="Abdominal">Abdominal</option>
+                                <option value="Outro">Outro</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="tempoExercicio" class="form-label">Tempo (minutos)</label>
+                            <input type="number" class="form-control" id="tempoExercicio" min="0" placeholder="Ex: 10">
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="seriesExercicio" class="form-label">Séries</label>
+                                <input type="number" class="form-control" id="seriesExercicio" min="1" placeholder="Ex: 3">
+                            </div>
+                            <div class="col">
+                                <label for="repeticoesExercicio" class="form-label">Repetições</label>
+                                <input type="number" class="form-control" id="repeticoesExercicio" min="1" placeholder="Ex: 12">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="descansoExercicio" class="form-label">Descanso (segundos)</label>
+                            <input type="number" class="form-control" id="descansoExercicio" min="0" placeholder="Ex: 60">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="observacaoExercicio" class="form-label">Observações</label>
+                            <textarea class="form-control" id="observacaoExercicio" rows="2" placeholder="Ex: Aumentar peso gradualmente"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnSalvarExercicio">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalConfirmacao" tabindex="-1" aria-labelledby="modalConfirmacaoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalConfirmacaoLabel">Confirmar Exclusão</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Tem certeza que deseja excluir este item?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="btnConfirmarExclusao">Excluir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="js/modelos.js"></script>
+    <script src="js/visualizacao.js"></script>
+    <script src="js/controlador.js"></script>
+</body>
+</html>

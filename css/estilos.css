@@ -1,0 +1,120 @@
+:root {
+    --cor-primaria: #ff5722;
+    --cor-secundaria: #42a5f5;
+    --cor-destaque: #4caf50;
+}
+
+
+.navbar-brand {
+    font-weight: bold;
+    color: var(--cor-primaria) !important;
+}
+
+
+.card {
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    font-weight: bold;
+    border-bottom: 2px solid var(--cor-primaria);
+}
+
+
+.exercicio-item {
+    border-left: 4px solid var(--cor-secundaria);
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: rgba(66, 165, 245, 0.1);
+    transition: all 0.3s ease;
+}
+
+.exercicio-item:hover {
+    transform: translateX(5px);
+    border-left-color: var(--cor-primaria);
+}
+
+.exercicio-cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.exercicio-titulo {
+    font-weight: bold;
+    margin: 0;
+}
+
+.exercicio-botoes button {
+    padding: 0.25rem 0.5rem;
+    margin-left: 5px;
+}
+
+.exercicio-detalhes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 0.9em;
+}
+
+.detalhe-item {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 3px 8px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.detalhe-item i {
+    margin-right: 5px;
+    color: var(--cor-secundaria);
+}
+
+.btn-success {
+    background-color: var(--cor-destaque);
+    border-color: var(--cor-destaque);
+}
+
+.btn-primary {
+    background-color: var(--cor-secundaria);
+    border-color: var(--cor-secundaria);
+}
+
+.btn-info {
+    color: white;
+}
+
+
+.treino-item.ativo {
+    background-color: rgba(76, 175, 80, 0.2);
+    border-left: 3px solid var(--cor-destaque);
+}
+
+
+.treino-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.treino-item:hover {
+    background-color: rgba(255, 87, 34, 0.1);
+}
+
+
+@media (max-width: 768px) {
+    .exercicio-cabecalho {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .exercicio-botoes {
+        margin-top: 10px;
+    }
+}
